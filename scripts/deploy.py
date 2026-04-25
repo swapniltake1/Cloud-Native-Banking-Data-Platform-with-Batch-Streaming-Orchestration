@@ -12,7 +12,7 @@ def deploy_to_environment(env):
 
     # Deploy using Databricks CLI
     subprocess.run(['databricks', 'workspace', 'import-dir', 'notebooks', f'/Shared/Banking-Platform-{env}', '--overwrite'])
-    subprocess.run(['databricks', 'jobs', 'create', '--json-file', 'databricks-job.json'])
+    subprocess.run(['databricks', 'jobs', 'create', '--json', f'@databricks-job.json'])
 
 if __name__ == "__main__":
     import sys

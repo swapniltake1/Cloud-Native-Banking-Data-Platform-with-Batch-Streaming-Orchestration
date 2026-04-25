@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: silver_transactions
+    description: "Cleaned and categorized transaction data"
+    columns:
+      - name: txn_id
+        description: "Unique transaction ID"
+        tests:
+          - unique
+          - not_null
+      - name: account_id
+        description: "Account identifier"
+        tests:
+          - not_null
+      - name: amount
+        description: "Transaction amount"
+        tests:
+          - not_null
+      - name: transaction_type
+        description: "Type of transaction"
+        tests:
+          - accepted_values:
+              values: ['DEBIT', 'CREDIT']
+      - name: location
+        description: "Transaction location"
+        tests:
+          - not_null
+      - name: amount_category
+        description: "Categorized amount level"
+        tests:
+          - accepted_values:
+              values: ['LOW', 'MEDIUM', 'HIGH']

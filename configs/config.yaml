@@ -1,3 +1,15 @@
 paths:
   raw: /FileStore/banking/transactions
   bronze: /mnt/bronze/transactions
+
+environments:
+  dev:
+    databricks_host: "https://dev.cloud.databricks.com"
+    databricks_token: "{{ secrets.DATABRICKS_DEV_TOKEN }}"
+  prod:
+    databricks_host: "https://prod.cloud.databricks.com"
+    databricks_token: "{{ secrets.DATABRICKS_PROD_TOKEN }}"
+
+security:
+  encryption: true
+  masking_fields: ["account_id", "amount"]  # Fields to mask in gold layer

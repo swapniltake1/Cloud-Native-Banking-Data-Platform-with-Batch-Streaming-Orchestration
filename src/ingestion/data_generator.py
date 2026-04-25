@@ -1,9 +1,15 @@
 import random
 import pandas as pd
 from datetime import datetime, timedelta
+import logging
+
+# Set up logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 
 def generate_transactions(n=1000):
+    logger.info(f"Generating {n} transactions")
     data = []
 
     for i in range(n):
@@ -17,4 +23,6 @@ def generate_transactions(n=1000):
             "is_fraud": 1 if random.random() < 0.05 else 0
         })
 
-    return pd.DataFrame(data)
+    df = pd.DataFrame(data)
+    logger.info(f"Generated {len(df)} transactions successfully")
+    return df
